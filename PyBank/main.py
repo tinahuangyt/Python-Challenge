@@ -51,4 +51,15 @@ print("Average Change: $"+str(avgchange))
 print("Greatest Increase in Profits: "+ str(newmonths[maxdiffindex])+ " ($" + str(max(totdiff)) + ")")
 print("Greatest Decrease in Profits: "+ str(newmonths[mindiffindex])+ " ($" + str(min(totdiff)) + ")")
 
+
+
+
+f=open("results.txt","w") #creates a file
+f.write("Financial Analysis")
+f.write("------------------------------------------")
+
+f.close() #write and saves the file
+
 ###### Export result to txt file
+
+#in terminal python main.py > result.txt
