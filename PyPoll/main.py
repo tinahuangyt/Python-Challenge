@@ -2,7 +2,7 @@ import os
 import csv
 csvpath = os.path.join("..", "pypoll","election_data.csv")
 
-with open(csvpath, newline="") as csvfile: #open the file
+with open(csvpath, newline="") as csvfile: 
     csvreader = csv.reader(csvfile, delimiter = ",")
     newreader = next(csvreader)
 
