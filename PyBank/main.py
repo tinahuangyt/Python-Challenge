@@ -10,19 +10,15 @@ with open(csvpath) as csvfile: #open the file
     
     for row in csvreader:
         #print(row)
-        months.append(row[0]) #create a list of months
+        months.append((row[0])) #create a list of months
         newmonths = months[1:] #remove first item 
-        money.append(row[1]) #create a list of money
+        money.append((row[1])) #create a list of money
         newmoney = money[1:] #remove first item
         
-    #print(newmonths)
-    #print(newmoney)
-    #print("Number of months is: " + str(len(newmonths))) #TOTAL MONTHS
+    #print(str(len(newmonths))) #TOTAL MONTHS
     
     moneyint = list(map(int,newmoney)) #convert to list of int
-    #print(moneyint)
     sm = sum(moneyint) #NET TOTAL
-     
 
     diffs = []
     for i in range(len(newmoney)-1):
