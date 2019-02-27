@@ -31,6 +31,13 @@ with open(csvpath, newline="") as csvfile: #open the file
     
 
 
+
+
+
+
+
+
+
     for i in range(len(uniquelist)):
         for a in range(len(newcand)):
             if str(uniquelist[i]) == str(newcand[a]):
