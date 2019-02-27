@@ -5,6 +5,10 @@ csvpath = os.path.join("..", "pypoll","election_data_test.csv")
 voter = []
 candidate = []
 uniquelist = []
+votesum = 0
+finalname = []
+totcount = []
+percentvote = []
 
 with open(csvpath) as csvfile: #open the file
     csvreader = csv.reader(csvfile, delimiter = ",")
@@ -25,15 +29,28 @@ with open(csvpath) as csvfile: #open the file
     print(uniquelist) #LIST OF CANDIDATES
 
 
-    for row in csvreader:
-        if row[
+    for i in range(len(uniquelist)):
+        for a in range(len(newcand)):
+            if str(uniquelist[i]) == str(newcand[a]):
+                votesum = votesum + 1
+        # print(str(uniquelist[i]) + " " + str(votesum)) #CANDIDATE NAME: TOT VOTE COUNT
+        finalname.append(uniquelist[i])
+        totcount.append(votesum)
+        votesum = 0
+    print(finalname) #LIST OF NAMES
+    print(totcount) #LIST OF TOTAL COUNT
+
+    for i in range(len(totcount)):
+        percentvote.append(int(totcount[i])/int(len(newvoter)))
+    print(percentvote) #LIST OF PERCENTAGE
+
+
 
 
 
 
 #The total number of votes cast
 #A complete list of candidates who received votes
-
-#The percentage of votes each candidate won
 #The total number of votes each candidate won
-#The winner of the election based on popular vote.
+#The percentage of votes each candidate won
+#The winner of the election based on popular vote
