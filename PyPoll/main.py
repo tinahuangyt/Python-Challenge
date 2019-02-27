@@ -33,13 +33,3 @@ with open(csvpath, newline="") as csvfile:
     print("------------------------")
     print("Winner: "+ candlist[winnerindex])
     print("------------------------")
-
-
-
-#The total number of votes cast
-#A complete list of candidates who received votes
-
-#The total number of votes each candidate won
-#The percentage of votes each candidate won
-
-#The winner of the election based on popular vote
