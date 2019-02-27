@@ -2,31 +2,33 @@ import os
 import csv
 csvpath = os.path.join("..", "pypoll","election_data_test.csv")
 
-voter = []
-candidate = []
-uniquelist = []
-votesum = 0
-finalname = []
-totcount = []
-percentvote = []
-
-with open(csvpath) as csvfile: #open the file
+with open(csvpath, newline="") as csvfile: #open the file
     csvreader = csv.reader(csvfile, delimiter = ",")
+    newreader = next(csvreader)
+
+    candidate = [] #all entries
+    candlist = [] #list of 4 candidiates
+   
+    votesum = []
+    #finalname = []
+    totcount = []
+    percentvote = []
 
     for row in csvreader:
         #print(row)
-        voter.append(row[0])
-        newvoter = voter[1:] #list of voter ID
         candidate.append(row[2])
-        newcand = candidate[1:] #list of candidate
+        if row[2] not in candlist:
+            candlist.append(row[2]) 
     
-    print(str(len(newvoter))) #TOTAL NUMBER OF VOTES
+    print(str(len(candidate))) #TOTAL NUMBER OF VOTES
+    print(candlist) #LIST OF CANDIDATES
+    
+    ###########################
 
-    for i in range(len(newcand)):
-        if str(newcand[i]) not in uniquelist:
-            uniquelist.append(str(newcand[i]))
+    for x in candlist:
+        candcount = str(candidate.count(x))
+        print(str(x)+": "+ candcount) #VOTE FOR EA CANDIDATE
     
-    print(uniquelist) #LIST OF CANDIDATES
 
 
     for i in range(len(uniquelist)):
@@ -34,7 +36,7 @@ with open(csvpath) as csvfile: #open the file
             if str(uniquelist[i]) == str(newcand[a]):
                 votesum = votesum + 1
         # print(str(uniquelist[i]) + " " + str(votesum)) #CANDIDATE NAME: TOT VOTE COUNT
-        finalname.append(uniquelist[i])
+        #finalname.append(uniquelist[i])
         totcount.append(votesum)
         votesum = 0
     print(finalname) #LIST OF NAMES
@@ -51,6 +53,8 @@ with open(csvpath) as csvfile: #open the file
 
 #The total number of votes cast
 #A complete list of candidates who received votes
+
 #The total number of votes each candidate won
 #The percentage of votes each candidate won
+
 #The winner of the election based on popular vote
