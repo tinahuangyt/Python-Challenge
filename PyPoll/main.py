@@ -1,60 +1,38 @@
 import os
 import csv
-csvpath = os.path.join("..", "pypoll","election_data_test.csv")
+csvpath = os.path.join("..", "pypoll","election_data.csv")
 
 with open(csvpath, newline="") as csvfile: #open the file
     csvreader = csv.reader(csvfile, delimiter = ",")
     newreader = next(csvreader)
 
-    candidate = [] #all entries
-    candlist = [] #list of 4 candidiates
+    candidate = [] 
+    candlist = [] 
+    countlist = []
    
-    votesum = []
-    #finalname = []
-    totcount = []
-    percentvote = []
-
     for row in csvreader:
         #print(row)
         candidate.append(row[2])
         if row[2] not in candlist:
-            candlist.append(row[2]) 
+            candlist.append(row[2]) #LIST OF CANDIDIDATES
     
-    print(str(len(candidate))) #TOTAL NUMBER OF VOTES
-    print(candlist) #LIST OF CANDIDATES
-    
-    ###########################
+    print("Election Results")
+    print("------------------------")
+    print("Total Votes: " + str(len(candidate))) #TOTAL NUMBER OF VOTES
+    print("------------------------")
 
     for x in candlist:
-        candcount = str(candidate.count(x))
-        print(str(x)+": "+ candcount) #VOTE FOR EA CANDIDATE
+        candcount = candidate.count(x)
+        countlist.append(int(candcount)) #add count to list 
+        percentvote = int(candcount)/int(len(candidate))
+        adjpercent = round(percentvote*100,2)
+        print(str(x)+": "+ str(adjpercent) + "% " + "("+ str(candcount)+")") #OUTPUT
     
-
-
-
-
-
-
-
-
-
-    for i in range(len(uniquelist)):
-        for a in range(len(newcand)):
-            if str(uniquelist[i]) == str(newcand[a]):
-                votesum = votesum + 1
-        # print(str(uniquelist[i]) + " " + str(votesum)) #CANDIDATE NAME: TOT VOTE COUNT
-        #finalname.append(uniquelist[i])
-        totcount.append(votesum)
-        votesum = 0
-    print(finalname) #LIST OF NAMES
-    print(totcount) #LIST OF TOTAL COUNT
-
-    for i in range(len(totcount)):
-        percentvote.append(int(totcount[i])/int(len(newvoter)))
-    print(percentvote) #LIST OF PERCENTAGE
-
-
-
+    #print(countlist)
+    winnerindex = countlist.index(max(countlist))
+    print("------------------------")
+    print("Winner: "+ candlist[winnerindex])
+    print("------------------------")
 
 
 
