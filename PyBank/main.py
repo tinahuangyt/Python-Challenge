@@ -39,23 +39,19 @@ with open(csvpath) as csvfile: #open the file
     mindiffindex = totdiff.index(mindiff)+1
     newmonths[mindiffindex] #MONTH OF MIN DIFF
 
-print("Financial Analysis")
-print("------------------------------------------")
-print("Total Months: "+str(len(newmonths)))
-print("Total: $"+str(sm))
-print("Average Change: $"+str(avgchange))
-print("Greatest Increase in Profits: "+ str(newmonths[maxdiffindex])+ " ($" + str(max(totdiff)) + ")")
-print("Greatest Decrease in Profits: "+ str(newmonths[mindiffindex])+ " ($" + str(min(totdiff)) + ")")
+f=open("results.txt","w") #Open txt file
 
-
-
-
-f=open("results.txt","w") #creates a file
-f.write("Financial Analysis")
-f.write("------------------------------------------")
+print("Financial Analysis", file=f)
+print("------------------------------------------", file=f)
+print("Total Months: "+str(len(newmonths)), file=f)
+print("Total: $"+str(sm), file=f)
+print("Average Change: $"+str(avgchange), file=f)
+print("Greatest Increase in Profits: "+ str(newmonths[maxdiffindex])+ " ($" + str(max(totdiff)) + ")", file=f)
+print("Greatest Decrease in Profits: "+ str(newmonths[mindiffindex])+ " ($" + str(min(totdiff)) + ")", file=f)
 
 f.close() #write and saves the file
 
-###### Export result to txt file
-
-#in terminal python main.py > result.txt
+resultpath = os.path.join("..", "pybank","results.txt") #Print txt content in terminal
+with open(resultpath) as resultfile:
+    data = resultfile.read()
+    print(data)

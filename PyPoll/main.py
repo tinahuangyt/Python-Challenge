@@ -14,22 +14,32 @@ with open(csvpath, newline="") as csvfile:
         #print(row)
         candidate.append(row[2])
         if row[2] not in candlist:
-            candlist.append(row[2]) #LIST OF CANDIDIDATES
+            candlist.append(row[2]) #Candidate list
     
-    print("Election Results")
-    print("------------------------")
-    print("Total Votes: " + str(len(candidate))) #TOTAL NUMBER OF VOTES
-    print("------------------------")
+    
+    f=open("result.txt", "w") #Open txt file
+    
+    print("Election Results", file=f)
+    print("------------------------", file=f)
+    print("Total Votes: " + str(len(candidate)),file=f) #Total votes/candidate
+    print("------------------------",file=f)
 
     for x in candlist:
         candcount = candidate.count(x)
-        countlist.append(int(candcount)) #add count to list 
+        countlist.append(int(candcount)) #Add count to list
         percentvote = int(candcount)/int(len(candidate))
         adjpercent = round(percentvote*100,2)
-        print(str(x)+": "+ str(adjpercent) + "% " + "("+ str(candcount)+")") #OUTPUT
+        print(str(x)+": "+ str(adjpercent) + "% " + "("+ str(candcount)+")",file=f) #Output for ea candidate
     
     #print(countlist)
     winnerindex = countlist.index(max(countlist))
-    print("------------------------")
-    print("Winner: "+ candlist[winnerindex])
-    print("------------------------")
+    print("------------------------",file=f)
+    print("Winner: "+ candlist[winnerindex],file=f)
+    print("------------------------",file=f)
+
+    f.close()
+
+resultpath = os.path.join("..", "pypoll","result.txt") #Print txt content in terminal
+with open(resultpath) as resultfile:
+    data = resultfile.read()
+    print(data)
